@@ -4,10 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 let store;
 
-const initialState = {
+export const initialState = {
   lastUpdate: 0,
   light: false,
   count: 0,
+};
+
+export type State = {
+  lastUpdate: number;
+  light: boolean;
+  count: number;
 };
 
 const reducer = (state = initialState, action) => {
@@ -68,7 +74,7 @@ export const initializeStore = preloadedState => {
   return _store;
 };
 
-export function useStore(initialState) {
+export function useStore(initialState: State) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
   return store;
 }
